@@ -44,7 +44,7 @@
 	            			@foreach($categories as $c)
 	            				<option value="{{$c->id}}">{{$c->description}}</option>
 	            			@endforeach
-            		</select>
+            			</select>
 		            </div>
 		            <div class="form-group">
 		            	<label for="nome">Conteúdo</label>

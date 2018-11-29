@@ -66,7 +66,7 @@
 		            		<input type="radio" name="status" value="0">Aberto
 		            		<input type="radio" name="status" value="1" checked>Finalizado
 		            	@else
-		            		<input type="radio" name="status" value="0" checked>Finalizado
+		            		<input type="radio" name="status" value="0" checked>Aberto
 		            		<input type="radio" name="status" value="1">Finalizado
 		            	@endif
 		            </div>

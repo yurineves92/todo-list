@@ -12,11 +12,27 @@ use Auth;
 class TasksController extends Controller
 {
     public function index(Request $request) {
-    	if($request) {
+        $date_initial = Request::get('date_initial');
+        $date_final = Request::get('date_final');
+        $category_id = Request::get('category_id');
+        if($request) {
     		$query = trim(Request::get('searchText'));
-    		$tasks = Tasks::where('title','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(25);
+    		$tasks = Tasks::where('title','LIKE','%'.$query.'%')
+            ->orderBy('id','DESC')->paginate(25);
+            
     	}
-    	return view('tasks.index')->with('tasks',$tasks)->with('searchText',$query);
+        if($category_id) {
+            $tasks = Tasks::where('category_id',$category_id)
+            ->orderBy('id','DESC')->paginate(25);
+        }
+        if($date_initial) {
+            $tasks = Tasks::where('started','>=',$date_initial)->get();
+        }
+        if($date_final) {
+            $tasks = Tasks::where('started','<=',$date_final)->get();
+        }
+        $categories = Categories::all();
+    	return view('tasks.index')->with('tasks',$tasks)->with('searchText',$query)->with('categories',$categories);
     }
 
     public function create(){

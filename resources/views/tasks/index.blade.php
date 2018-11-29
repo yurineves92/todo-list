@@ -57,7 +57,11 @@
 							<td>{{ $t->id}}</td>
 							<td>{{ $t->title}}</td>
 							<td>{{ date('d/m/Y', strtotime($t->started)) }}</td>
+							@if(!empty($t->ended))
 							<td>{{ date('d/m/Y', strtotime($t->ended)) }}</td>
+							@else
+							<td></td>
+							@endif
 							@if($t->status == 1)
 							<td>Finalizado</td>
 							@else
