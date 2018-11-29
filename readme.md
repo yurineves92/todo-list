@@ -15,11 +15,6 @@ php artisan migrate
 
 Executar o comando para rodar a migrations para criação das tabelas no banco de dados.
 
-```
-Criar grupos de usuário para uso do sistema.
-```
-Agora só criar o usuário e acessar o sistema.
-
 # Funcionalidades do sistema
 
 ## O sistema consiste em utilizar seguintes telas
