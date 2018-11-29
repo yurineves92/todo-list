@@ -32,7 +32,11 @@
                      <span aria-hidden="true">×</span>
                 </button>
                 <h4 class="modal-title">Finalizar a tarefa?</h4>
-			</div><br>
+			</div>
+			<div class="modal-body">
+				<p>#{{$t->id}} - {{$t->title}}</p>
+				<input type="date" name="ended" class="form-control" value="{{$t->ended}}">
+			</div>
 			<div class="text-center">
 				<button type="submit" class="btn btn-primary">Sim</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
@@ -40,4 +44,26 @@
 		</div>
 	</div>
 	{{Form::Close()}}
+</div>
+
+<!-- view task -->
+<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-view-{{$t->id}}">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+				aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">{{$t->title}}</h4>
+                <small>Criado em {{ date('d/m/Y', strtotime($t->created_at)) }}</small>
+			</div>
+			<div class="modal-body">
+				<p>{{$t->content}}</p>
+			</div>
+			<div class="text-center">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+			</div><br>
+		</div>
+	</div>
 </div>

@@ -20,6 +20,10 @@ class TasksController extends Controller
     }
 
     public function create(){
+        if(Auth::guest()){
+            Session::flash('alert-danger', 'Você precisa criar uma conta para gerenciar suas tarefas');
+            return redirect()->action("TasksController@index");
+        }
         $categories = Categories::all();
     	return view('tasks.create')->with('categories',$categories);
     }
@@ -34,10 +38,18 @@ class TasksController extends Controller
     }
 
     public function edit($id){
+        if(Auth::guest()){
+            Session::flash('alert-danger', 'Você precisa criar uma conta para gerenciar suas tarefas');
+            return redirect()->action("TasksController@index");
+        }   
         $categories = Categories::all();
     	return view("tasks.edit", ["task"=>Tasks::findOrFail($id)])->with('categories',$categories);
     }
-
+    public function show($id = null){
+        $query = trim(Request::get('searchText'));
+        $tasks = Tasks::where('status',$id)->orderBy('id','DESC')->paginate(25);
+        return view('tasks.index')->with('tasks',$tasks)->with('searchText',$query);
+    }
     public function update($id){
         $params = Request::all();
     	$task = Tasks::findOrFail($id);
@@ -48,6 +60,10 @@ class TasksController extends Controller
     }
 
     public function destroy($id){
+        if(Auth::guest()){
+            Session::flash('alert-danger', 'Você precisa criar uma conta para gerenciar suas tarefas');
+            return redirect()->action("TasksController@index");
+        }
     	$task = Tasks::findOrFail($id)->delete();
     	Session::flash('alert-success', 'Tarefa removido com sucesso!');
     	return redirect()->action("TasksController@index");
@@ -61,6 +77,10 @@ class TasksController extends Controller
         return view('tasks.list')->with('tasks',$tasks);
     }
     public function finished($id){
+        if(Auth::guest()){
+            Session::flash('alert-danger', 'Você precisa criar uma conta para gerenciar suas tarefas');
+            return redirect()->action("TasksController@index");
+        }
         $params = Request::all();
         $task = Tasks::findOrFail($id);
         $task->status = 1;

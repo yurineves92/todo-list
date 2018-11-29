@@ -12,6 +12,8 @@ class HomeController extends Controller
     public function index(){
         $categories = Categories::all();
         $tasks = Tasks::orderBy('id','DESC')->paginate(5);
-        return view('index')->with('categories',$categories)->with('tasks',$tasks);
+        $task_close = Tasks::where('status',0)->get()->count();
+        $task_open = Tasks::where('status',1)->get()->count();
+        return view('index',compact('task_open','task_close'))->with('categories',$categories)->with('tasks',$tasks);
     }
 }

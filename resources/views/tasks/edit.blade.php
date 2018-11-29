@@ -14,7 +14,6 @@
 			<div class="box-header with-border">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 					<h3>Formulário</h3>
-					<hr>
 				</div>
 			</div>
 		</div>
@@ -64,11 +63,11 @@
 		            <div class="form-group">
 		            	<label for="nome">Status</label>
 		            	@if($task->status == 1)
-		            	<input type="checkbox" name="status" value="0" checked>Aberto
-		            	<input type="checkbox" name="status" value="1">Finalizado
+		            		<input type="radio" name="status" value="0">Aberto
+		            		<input type="radio" name="status" value="1" checked>Finalizado
 		            	@else
-		            	<input type="checkbox" name="status" value="0">Finalizado
-		            	<input type="checkbox" name="status" value="1" checked>Finalizado
+		            		<input type="radio" name="status" value="0" checked>Finalizado
+		            		<input type="radio" name="status" value="1">Finalizado
 		            	@endif
 		            </div>
 		            <div class="form-group">

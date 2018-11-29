@@ -17,7 +17,7 @@ class CreateTableTasks extends Migration
             $table->increments('id');
             $table->string('title',100);
             $table->text('content');
-            $table->date('started');
+            $table->date('started')->default(null);
             $table->date('ended');
             $table->boolean('status')->default(false);
             $table->integer('category_id')->unsigned();

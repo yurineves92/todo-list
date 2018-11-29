@@ -15,12 +15,13 @@
 			<div class="box-header with-border">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 					<h3>{{$task->title}}</h3>
+					<small><td>Criado no dia: {{date('d/m/Y', strtotime($task->created_at))}}</td></small>
 					<hr>
 				</div>
 			</div>
 		</div>
 		<div class="box-body">
-
+			<p>{{$task->content}}</p>
 		</div>
 	</div>
 </section>

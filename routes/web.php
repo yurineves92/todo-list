@@ -16,6 +16,7 @@ Route::get('/','HomeController@index');
 Route::resource('/categories', 'CategoriesController');
 Route::resource('/users', 'UsersController');
 Route::resource('/tasks', 'TasksController');
+Route::get('/tasks/{id?}','TasksController@index');
 Route::get('/tasks/view/{id}','TasksController@view');
 Route::get('/tasks/list/{status}','TasksController@list');
 Route::post('/tasks/finished/{id}','TasksController@finished');

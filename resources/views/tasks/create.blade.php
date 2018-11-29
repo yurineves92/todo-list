@@ -12,15 +12,14 @@
 	<div class="box box-default">
 		<div class="row">
 			<div class="box-header with-border">
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					<h3>Formulário</h3>
-					<hr>
 				</div>
 			</div>
 		</div>
 		<div class="box-body">
 			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					@if (count($errors)>0)
 					<div class="alert alert-danger">
 						<button type="button" class="close" data-dismiss="alert">X</button>
@@ -59,8 +58,8 @@
 		            </div><br>
 		            <div class="form-group">
 		            	<label for="nome">Status</label>
-		            	<input type="checkbox" name="status" value="0">Aberto
-		            	<input type="checkbox" name="status" value="1">Finalizado
+		            	<input type="radio" name="status" value="0">Aberto
+		            	<input type="radio" name="status" value="1">Finalizado
 		            </div>
 		            <div class="form-group">
 		            	<button class="btn btn-primary" type="submit">Salvar</button>

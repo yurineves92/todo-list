@@ -15,10 +15,18 @@
 				<h3>Lista de Tarefas <a href="tasks/create"><button class="btn btn-primary">Novo</button></a></h3>
 				@include('tasks.search')
 			</div>
+
 		</div>
 	</div>
 	
 	<div class="box-body">
+		<small>Escolha as situações da tarefas</small>
+		<div>
+			<a href="/tasks"><button class="btn btn-default">Todas</button></a>
+			<a href="/tasks/0"><button class="btn btn-primary">Abertas</button></a>
+			<a href="/tasks/1"><button class="btn btn-success">Finalizadas</button></a>
+		</div>
+		<br>
 		@if ($message = Session::get('alert-success'))
 	      	<div class="alert alert-success alert-block">
 	        	<button type="button" class="close" data-dismiss="alert">X</button> 
@@ -44,12 +52,12 @@
 							<th>Usuário</th>
 							<th>Opções</th>
 						</thead>
-		               @foreach ($tasks as $t)
+		               	@foreach ($tasks as $t)
 						<tr>
 							<td>{{ $t->id}}</td>
 							<td>{{ $t->title}}</td>
-							<td>{{ $t->started}}</td>
-							<td>{{ $t->ended}}</td>
+							<td>{{ date('d/m/Y', strtotime($t->started)) }}</td>
+							<td>{{ date('d/m/Y', strtotime($t->ended)) }}</td>
 							@if($t->status == 1)
 							<td>Finalizado</td>
 							@else
