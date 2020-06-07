@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use Hash;
-use Request;
-use Session;
-use Auth;
 
 class UsersController extends Controller
 {
@@ -19,7 +19,7 @@ class UsersController extends Controller
     public function index(Request $request){
     	if($request) {
     		$query = trim(Request::get('searchText'));
-    		$users = User::where('name','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(25);
+    		$users = User::where('name','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(10);
     	}
     	return view('users.index')->with('users',$users)->with('searchText',$query);
     }

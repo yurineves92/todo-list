@@ -52,6 +52,9 @@
 						@endforeach
 					</table>
 				</div>
+				<div class="text-center">
+					{{ $categories->appends($searchText)->links() }}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -82,6 +82,9 @@
 					</table>
 				</div>
 			</div>
+			<div class="text-center">
+				{{ $tasks->appends($searchText)->links() }}
+			</div>
 		</div>
 	</div>
 	</div>

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 use App\Categories;
-use Session;
-use Request;
 
 class CategoriesController extends Controller
 {
     public function index(Request $request) {
     	if($request) {
     		$query = trim(Request::get('searchText'));
-    		$categories = Categories::where('description','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(25);
+    		$categories = Categories::where('description','LIKE','%'.$query.'%')->orderBy('id','DESC')->paginate(10);
     	}
     	return view('categories.index')->with('categories',$categories)->with('searchText',$query);
     }

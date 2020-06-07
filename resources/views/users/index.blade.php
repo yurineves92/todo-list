@@ -55,6 +55,9 @@
 						@endforeach
 					</table>
 				</div>
+				<div class="text-center">
+					{{ $users->appends($searchText)->links() }}
+				</div>
 			</div>
 		</div>
 	</div>

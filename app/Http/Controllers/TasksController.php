@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Session;
 use App\Categories;
-use App\User;
 use App\Tasks;
-use Request;
-use Session;
-use Auth;
 
 class TasksController extends Controller
 {
@@ -18,12 +17,12 @@ class TasksController extends Controller
         if($request) {
     		$query = trim(Request::get('searchText'));
     		$tasks = Tasks::where('title','LIKE','%'.$query.'%')
-            ->orderBy('id','DESC')->paginate(25);
+            ->orderBy('id','DESC')->paginate(10);
             
     	}
         if($category_id) {
             $tasks = Tasks::where('category_id',$category_id)
-            ->orderBy('id','DESC')->paginate(25);
+            ->orderBy('id','DESC')->paginate(10);
         }
         if($date_initial) {
             $tasks = Tasks::where('started','>=',$date_initial)->get();
@@ -63,8 +62,9 @@ class TasksController extends Controller
     }
     public function show($id = null){
         $query = trim(Request::get('searchText'));
-        $tasks = Tasks::where('status',$id)->orderBy('id','DESC')->paginate(25);
-        return view('tasks.index')->with('tasks',$tasks)->with('searchText',$query);
+        $tasks = Tasks::where('status', $id)->orderBy('id','DESC')->paginate(10);
+        $categories = Categories::all();
+        return view('tasks.index')->with('tasks',$tasks)->with('searchText',$query)->with('categories', $categories);
     }
     public function update($id){
         $params = Request::all();
@@ -89,7 +89,7 @@ class TasksController extends Controller
         return view('tasks.view')->with('task',$task);
     }
     public function list($status){
-        $tasks = Tasks::where('status','=',$status)->paginate(25);
+        $tasks = Tasks::where('status','=',$status)->paginate(10);
         return view('tasks.list')->with('tasks',$tasks);
     }
     public function finished($id){

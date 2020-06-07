@@ -10,7 +10,17 @@ Criar um cópia do arquivo env.example para .env (Ambiente de Teste)
 Esse passo é importante dependendo onde você está rodando o projeto se for local é bom usar o .env caso em produção configurar no config/database.php
 
 ```
+php artisan db:seed
+```
+
+Esse passo é para gerar dados fakes para visualização do sistema.
+```
 php artisan migrate
+```
+### Conta de acesso
+```
+login: admin@gmail.com
+password: secret
 ```
 
 Executar o comando para rodar a migrations para criação das tabelas no banco de dados.
@@ -19,7 +29,7 @@ Executar o comando para rodar a migrations para criação das tabelas no banco d
 
 ## O sistema consiste em utilizar seguintes telas
 
-* Formulário de cadastro e edição.
+* Formulário de cadastro e edição de categorias, tarefas e usuários.
 * Listagem com filtros.
 * Restrição para acessar o sistema.
 * Migrações para controle da estrutura do banco de dados.
